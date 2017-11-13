@@ -23,7 +23,7 @@ class UploadController extends Controller
 	{
 		$this->validate($request, [
 		'name' => 'required',
-		'image' => 'required',
+		'image' => 'required', //kalo 'image' => 'required|mimes:jpeg,png,jpg','file' => 'required|mimes:pdf,doc,docx', maka di php.ini di laptop (di c) nanti comment dihilangkan, ; hilangkan bagian depan lalu restart apache dan laptop
 		'file' => 'required',
 		]);
 		
