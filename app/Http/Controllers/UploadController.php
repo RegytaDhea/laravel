@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller; //import
+use App\Upload; //import
 
 class UploadController extends Controller
 {
-    public function create()
+    public function index(Request $request) {
+		$uploads = Upload::orderBy('id','DESC')->paginate(5);
+		return view('uploads.index',compact('uploads'))
+		->with('i', ($request->input('page', 1) - 1) * 5);
+	}
+	
+	public function create()
 	{
 		return view('uploads.create');
 	}
@@ -15,8 +23,8 @@ class UploadController extends Controller
 	{
 		$this->validate($request, [
 		'name' => 'required',
-		'image' => 'required|mimes:jpeg,png,jpg',
-		'file' => 'required|mimes:pdf,doc,docx',
+		'image' => 'required',
+		'file' => 'required',
 		]);
 		
 		$input = $request->all();
@@ -40,7 +48,8 @@ class UploadController extends Controller
 		}
 		
 		$upload = Upload::create($input);
+		
 		return redirect()->route('upload.index')
-		->with('success','Image/file successfully added');
+						 ->with('success','Image/file successfully added');
 	}
 }

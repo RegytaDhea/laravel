@@ -88,6 +88,7 @@
 					          <a href="percakapan">Percakapan</a>
                     <a href="contact">Contact</a>
                     <a href="template">Templating</a>
+					<a href="upload">Upload</a>
                 </div>
             </div>
         </div>
