@@ -52,6 +52,10 @@ Route::get('coba2', function () {
     return view('coba2');
 });
 
+Route::get('upload',['as'=>'upload.index','uses'=>'UploadController@index']);
+Route::get('upload/create',['as'=>'upload.create','uses'=>'UploadController@create']);
+Route::post('upload',['as'=>'upload.store','uses'=>'UploadController@store']);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
